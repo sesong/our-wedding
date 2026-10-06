@@ -9,7 +9,8 @@ a{color:inherit;text-decoration:none}
 .page-shell{width:min(100%,540px);margin:0 auto;background:var(--cream);min-height:100vh;box-shadow:0 0 80px #323d2c13;overflow:hidden}
 .site-header{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:var(--cream)}
 .wordmark{font-family:Georgia,serif;font-weight:bold;letter-spacing:.08em;font-size:21px;white-space:nowrap}
-.wordmark span{color:var(--orange);font-size:17px;vertical-align:top;margin-left:2px}
+.decorative-star{display:inline-block;width:1em;height:1em;flex:none}
+.wordmark .decorative-star{width:16px;height:16px;color:var(--orange);vertical-align:middle;margin-left:2px}
 .site-header nav{display:flex;gap:19px;font-size:11px;font-weight:600;letter-spacing:-.03em;white-space:nowrap}
 .site-header nav a:hover,.site-header nav a:focus-visible{color:var(--orange)}
 .hero{padding:34px 29px 0;position:relative}
@@ -21,7 +22,7 @@ h1,h2{font-family:var(--serif);font-weight:500;letter-spacing:-.065em}
 h1{font-size:clamp(43px,10vw,61px);line-height:1.4;margin-bottom:17px}
 h1 em,.venue-content h3 em{font-style:normal;color:var(--green)}
 .hero-names{font-family:var(--serif);font-size:17px;margin-bottom:12px;letter-spacing:.06em}
-.hero-names span{font-family:Georgia,serif;color:var(--orange);font-size:15px;padding:0 10px}
+.hero-names .decorative-star{width:15px;height:15px;color:var(--orange);vertical-align:middle;margin:0 10px}
 .hero-date{font-size:11px;font-weight:700;letter-spacing:.16em;margin-bottom:30px}
 .hero-figure{position:relative;margin:0 auto;width:100%;height:430px;border-radius:49% 49% 8px 8px / 31% 31% 8px 8px;overflow:hidden;background:var(--sage)}
 .hero-figure img{width:100%;height:100%;object-fit:cover;object-position:center 47%}
@@ -34,7 +35,8 @@ h2{font-size:33px;line-height:1.45;margin-bottom:15px}
 .section-description{font-family:var(--serif);font-size:13px;line-height:1.9;color:var(--muted);margin-bottom:29px}
 .invitation{text-align:center;background:var(--paper)}
 .invitation .section-kicker{text-align:left}
-.flower-mark{font-family:Georgia,serif;color:var(--orange);font-size:33px;margin:15px 0 23px}
+.flower-mark{color:var(--orange);margin:15px 0 23px;line-height:0}
+.flower-mark .decorative-star{width:33px;height:33px}
 .invitation h2{margin-bottom:31px}
 .invitation-message{font-family:var(--serif);font-size:14px;line-height:2.15;color:#596052;margin-bottom:39px}
 .family-lines{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;display:grid;gap:15px;margin:0 13px 43px}
@@ -73,7 +75,7 @@ h2{font-size:33px;line-height:1.45;margin-bottom:15px}
 .venue-art:before,.venue-art:after{content:'';position:absolute;width:270px;height:270px;border:1px solid #a6b6a180;border-radius:50%}
 .venue-art:before{left:-85px;top:44px}.venue-art:after{right:-86px;bottom:42px}
 .venue-art span{font-family:Georgia,serif;font-size:28px;line-height:.92;font-style:italic;text-align:center;transform:rotate(-9deg);color:#6e8567;z-index:1}
-.venue-art i{position:absolute;font-size:73px;color:#b8c9ac;right:72px;top:24px;font-style:normal}
+.venue-art .decorative-star{position:absolute;width:73px;height:73px;color:#b8c9ac;right:72px;top:24px}
 .venue-content{padding:25px 24px 27px}
 .venue-label{margin-bottom:13px}
 .venue-content h3{font-family:var(--serif);font-size:24px;line-height:1.5;font-weight:500;letter-spacing:-.05em;margin-bottom:12px}
