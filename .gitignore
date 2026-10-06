@@ -1,0 +1,6 @@
+data/
+.env
+contact-sheet.jpg
+preview*.png
+node_modules/
+pictures/
