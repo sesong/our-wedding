@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20261007-2" />
+    <link rel="stylesheet" href="./styles.css?v=20261007-3" />
     <script src="./app.js" defer></script>
   </head>
   <body>
@@ -102,12 +102,14 @@
           <p class="section-kicker">04 / LOCATION</p>
           <h2 id="location-title">오시는 길</h2>
           <div class="venue-card">
-            <div class="venue-art" aria-hidden="true"><span>HERE<br />WE<br />GO!</span><svg class="decorative-star" width="73" height="73" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 2v10m0 8v10M2 16h10m8 0h10M6.1 6.1l7.1 7.1m5.6 5.6 7.1 7.1M25.9 6.1l-7.1 7.1m-5.6 5.6-7.1 7.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="currentColor"/></svg></div>
+            <figure class="location-map">
+              <img src="./images/location-map.jpg" alt="서초역 6번 출구에서 대검찰청 별관 4층 예그리나홀까지의 약도" loading="lazy" decoding="async" />
+            </figure>
             <div class="venue-content">
               <p class="venue-label">WEDDING VENUE</p>
               <h3>대검찰청 웨딩홀<br /><em>예그리나홀</em></h3>
               <p>서울 서초구 반포대로 157<br />대검찰청 별관 4층</p>
-              <p class="parking"><span aria-hidden="true">P</span> 무료 주차 가능합니다</p>
+              <p class="parking"><span aria-hidden="true">P</span> 무료 주차 가능</p>
             </div>
           </div>
           <div class="travel-list">
@@ -126,11 +128,19 @@
           <p class="section-description">함께 축하해 주시는 마음만으로도 충분히 감사합니다.</p>
           <details class="account-card">
             <summary><span>신랑 측 계좌</span><span class="summary-icon" aria-hidden="true">＋</span></summary>
-            <div class="account-detail"><strong>새마을금고 900324-7346-829</strong><span>예금주 김세송</span><button type="button" data-copy="900324-7346-829">계좌번호 복사</button></div>
+            <div class="account-detail">
+              <div class="account-entry"><span class="account-holder">김세송</span><strong>새마을금고 900324-7346-829</strong><button type="button" data-copy="900324-7346-829">계좌번호 복사</button></div>
+              <div class="account-entry"><span class="account-holder">김기두(부)</span><strong>은행명 000-0000-0000</strong><button type="button" data-copy="000-0000-0000">계좌번호 복사</button></div>
+              <div class="account-entry"><span class="account-holder">신순균(모)</span><strong>은행명 000-0000-0000</strong><button type="button" data-copy="000-0000-0000">계좌번호 복사</button></div>
+            </div>
           </details>
           <details class="account-card">
             <summary><span>신부 측 계좌</span><span class="summary-icon" aria-hidden="true">＋</span></summary>
-            <div class="account-detail"><strong>국민은행 469301-01-128161</strong><span>예금주 박나해</span><button type="button" data-copy="469301-01-128161">계좌번호 복사</button></div>
+            <div class="account-detail">
+              <div class="account-entry"><span class="account-holder">박나해</span><strong>국민은행 469301-01-128161</strong><button type="button" data-copy="469301-01-128161">계좌번호 복사</button></div>
+              <div class="account-entry"><span class="account-holder">박준승(부)</span><strong>은행명 000-0000-0000</strong><button type="button" data-copy="000-0000-0000">계좌번호 복사</button></div>
+              <div class="account-entry"><span class="account-holder">오다겸(모)</span><strong>은행명 000-0000-0000</strong><button type="button" data-copy="000-0000-0000">계좌번호 복사</button></div>
+            </div>
           </details>
         </section>
 

@@ -71,11 +71,8 @@ h2{font-size:33px;line-height:1.45;margin-bottom:15px}
 .gallery-note{text-align:center;font-size:11px;color:var(--muted);margin:19px 0 0}
 .location-section{background:var(--paper)}
 .venue-card{background:#e9eee7;overflow:hidden;border-radius:3px;margin:29px 0 17px}
-.venue-art{height:160px;position:relative;background:linear-gradient(130deg,#d4e2d0 0%,#e9eee7 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.venue-art:before,.venue-art:after{content:'';position:absolute;width:270px;height:270px;border:1px solid #a6b6a180;border-radius:50%}
-.venue-art:before{left:-85px;top:44px}.venue-art:after{right:-86px;bottom:42px}
-.venue-art span{font-family:Georgia,serif;font-size:28px;line-height:.92;font-style:italic;text-align:center;transform:rotate(-9deg);color:#6e8567;z-index:1}
-.venue-art .decorative-star{position:absolute;width:73px;height:73px;color:#b8c9ac;right:72px;top:24px}
+.location-map{background:#f8f5ed}
+.location-map img{display:block;width:100%;height:auto}
 .venue-content{padding:25px 24px 27px}
 .venue-label{margin-bottom:13px}
 .venue-content h3{font-family:var(--serif);font-size:24px;line-height:1.5;font-weight:500;letter-spacing:-.05em;margin-bottom:12px}
@@ -99,9 +96,11 @@ h2{font-size:33px;line-height:1.45;margin-bottom:15px}
 .account-card summary::-webkit-details-marker{display:none}
 .summary-icon{font-family:var(--sans);font-size:19px;color:var(--green);transition:transform .2s}
 .account-card[open] .summary-icon{transform:rotate(45deg)}
-.account-detail{padding:0 0 23px;display:flex;align-items:flex-start;flex-direction:column;gap:7px;font-size:12px}
-.account-detail strong{font-size:13px;font-weight:600}.account-detail span{color:var(--muted)}
-.account-detail button{background:var(--paper);border:1px solid #d0d5ca;padding:10px 13px;border-radius:2px;color:var(--ink);font-size:11px;font-weight:700;margin-top:8px}
+.account-detail{padding:0 0 23px;display:grid;gap:12px;font-size:12px}
+.account-entry{display:grid;grid-template-columns:1fr auto;align-items:center;gap:5px 12px;padding:15px;background:rgba(255,255,255,.48);border:1px solid #d8ddd3;border-radius:3px}
+.account-entry .account-holder{grid-column:1/-1;color:var(--green);font-weight:700}
+.account-entry strong{font-size:13px;font-weight:600}
+.account-entry button{grid-column:2;grid-row:2;background:var(--paper);border:1px solid #d0d5ca;padding:9px 11px;border-radius:2px;color:var(--ink);font-size:11px;font-weight:700}
 .account-detail button:hover{background:var(--sage)}
 .closing-section{height:390px;position:relative;background:#d7dacd}
 .closing-section img{height:100%;width:100%;object-fit:cover;object-position:center 42%}
