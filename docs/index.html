@@ -150,8 +150,24 @@
           </form>
         </section>
 
+        <section class="guestbook-section section-pad" id="guestbook" aria-labelledby="guestbook-title">
+          <p class="section-kicker">06 / GUESTBOOK</p>
+          <h2 id="guestbook-title">축하의 마음</h2>
+          <p class="section-description">따뜻한 축하를 남겨 주세요.<br />메시지는 승인 후 공개됩니다.</p>
+          <form id="guestbook-form" class="guest-form">
+            <label for="guestbook-name">성함</label>
+            <input id="guestbook-name" name="name" type="text" maxlength="30" autocomplete="name" required />
+            <label for="guestbook-message">축하 메시지</label>
+            <textarea id="guestbook-message" name="message" rows="4" minlength="2" maxlength="500" required></textarea>
+            <label class="honeypot" aria-hidden="true">비워 두세요<input name="website" tabindex="-1" autocomplete="off" /></label>
+            <button class="form-submit" type="submit">축하 남기기</button>
+            <p id="guestbook-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <div id="guestbook-list" class="guestbook-list" aria-live="polite"></div>
+        </section>
+
         <section class="account-section section-pad" id="account" aria-labelledby="account-title">
-          <p class="section-kicker">06 / THANK YOU</p>
+          <p class="section-kicker">07 / THANK YOU</p>
           <h2 id="account-title">마음 전하실 곳</h2>
           <details class="account-card">
             <summary><span>신랑 측 계좌</span><span class="summary-icon" aria-hidden="true">＋</span></summary>
@@ -169,22 +185,6 @@
               <div class="account-entry"><span class="account-holder">오다겸(모)</span><strong>은행명 000-0000-0000</strong><button type="button" data-copy="000-0000-0000">계좌번호 복사</button></div>
             </div>
           </details>
-        </section>
-
-        <section class="guestbook-section section-pad" id="guestbook" aria-labelledby="guestbook-title">
-          <p class="section-kicker">07 / GUESTBOOK</p>
-          <h2 id="guestbook-title">축하의 마음</h2>
-          <p class="section-description">따뜻한 축하를 남겨 주세요.<br />메시지는 승인 후 공개됩니다.</p>
-          <form id="guestbook-form" class="guest-form">
-            <label for="guestbook-name">성함</label>
-            <input id="guestbook-name" name="name" type="text" maxlength="30" autocomplete="name" required />
-            <label for="guestbook-message">축하 메시지</label>
-            <textarea id="guestbook-message" name="message" rows="4" minlength="2" maxlength="500" required></textarea>
-            <label class="honeypot" aria-hidden="true">비워 두세요<input name="website" tabindex="-1" autocomplete="off" /></label>
-            <button class="form-submit" type="submit">축하 남기기</button>
-            <p id="guestbook-status" class="form-status" role="status" aria-live="polite"></p>
-          </form>
-          <div id="guestbook-list" class="guestbook-list" aria-live="polite"></div>
         </section>
 
         <section class="closing-section" aria-label="마지막 인사">
