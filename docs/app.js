@@ -153,6 +153,7 @@ rsvpConfirmation.addEventListener('click', event => {
 const guestbookForm = document.querySelector('#guestbook-form');
 const guestbookStatus = document.querySelector('#guestbook-status');
 const guestbookList = document.querySelector('#guestbook-list');
+const guestbookConfirmation = document.querySelector('#guestbook-confirmation');
 
 function renderApprovedMessages(entries) {
   guestbookList.replaceChildren();
@@ -207,12 +208,18 @@ guestbookForm.addEventListener('submit', async event => {
     });
     guestbookForm.reset();
     guestbookStatus.textContent = '메시지를 남겨 주셔서 감사합니다. 확인 후 공개됩니다.';
+    guestbookConfirmation.showModal();
   } catch (error) {
     console.error('Guestbook submission failed', error);
     guestbookStatus.textContent = '메시지를 보내지 못했습니다. 잠시 후 다시 시도해 주세요.';
   } finally {
     submitButton.disabled = false;
   }
+});
+
+document.querySelector('#guestbook-confirmation-close').addEventListener('click', () => guestbookConfirmation.close());
+guestbookConfirmation.addEventListener('click', event => {
+  if (event.target === guestbookConfirmation) guestbookConfirmation.close();
 });
 
 refreshGuestbook();

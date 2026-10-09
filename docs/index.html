@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./styles.css?v=20261009-9" />
     <script src="./config.js?v=20261009-1" defer></script>
     <script src="./guestbook-service.js?v=20261009-2" defer></script>
-    <script src="./app.js?v=20261009-3" defer></script>
+    <script src="./app.js?v=20261009-4" defer></script>
   </head>
   <body>
     <div class="page-shell">
@@ -207,6 +207,15 @@
         <h2 id="rsvp-confirmation-title">응답을 보냈어요</h2>
         <p id="rsvp-confirmation-message"></p>
         <button id="rsvp-confirmation-close" type="button">확인</button>
+      </div>
+    </dialog>
+    <dialog class="rsvp-confirmation" id="guestbook-confirmation" aria-labelledby="guestbook-confirmation-title" aria-describedby="guestbook-confirmation-message">
+      <div class="rsvp-confirmation-card">
+        <span class="rsvp-confirm-mark" aria-hidden="true"></span>
+        <p class="section-kicker">GUESTBOOK</p>
+        <h2 id="guestbook-confirmation-title">축하를 남겨주셔서<br />고맙습니다</h2>
+        <p id="guestbook-confirmation-message">축하의 말씀이 잘 전달되었습니다.<br />승인 후 공개됩니다.</p>
+        <button id="guestbook-confirmation-close" type="button">확인</button>
       </div>
     </dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
