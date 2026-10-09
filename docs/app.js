@@ -100,6 +100,8 @@ const rsvpForm = document.querySelector('#rsvp-form');
 const rsvpStatus = document.querySelector('#rsvp-status');
 const rsvpPartyField = document.querySelector('#rsvp-party-field');
 const rsvpPartySize = document.querySelector('#rsvp-party-size');
+const rsvpConfirmation = document.querySelector('#rsvp-confirmation');
+const rsvpConfirmationMessage = document.querySelector('#rsvp-confirmation-message');
 const attendanceChoices = [...rsvpForm.querySelectorAll('input[name="attending"]')];
 
 function updateRsvpPartyField() {
@@ -116,25 +118,36 @@ rsvpForm.addEventListener('submit', async event => {
   if (!rsvpForm.reportValidity()) return;
   const submitButton = rsvpForm.querySelector('[type="submit"]');
   const formData = new FormData(rsvpForm);
+  const attending = formData.get('attending') === 'yes';
+  const partySize = formData.get('partySize');
   submitButton.disabled = true;
   rsvpStatus.textContent = '응답을 보내고 있습니다.';
   try {
     await guestbookService.createRsvp({
       name: formData.get('name'),
-      attending: formData.get('attending') === 'yes',
-      partySize: formData.get('partySize'),
+      attending,
+      partySize,
       note: formData.get('note'),
       website: formData.get('website')
     });
     rsvpForm.reset();
     updateRsvpPartyField();
     rsvpStatus.textContent = '참석 여부를 전해 주셔서 감사합니다.';
+    rsvpConfirmationMessage.textContent = attending
+      ? `참석, 총 ${partySize}명으로 답변이 잘 전달되었습니다. 알려주셔서 감사합니다.`
+      : '참석이 어렵다고 답변을 잘 전달했습니다. 알려주셔서 감사합니다.';
+    rsvpConfirmation.showModal();
   } catch (error) {
     console.error('RSVP submission failed', error);
     rsvpStatus.textContent = '응답을 보내지 못했습니다. 잠시 후 다시 시도해 주세요.';
   } finally {
     submitButton.disabled = false;
   }
+});
+
+document.querySelector('#rsvp-confirmation-close').addEventListener('click', () => rsvpConfirmation.close());
+rsvpConfirmation.addEventListener('click', event => {
+  if (event.target === rsvpConfirmation) rsvpConfirmation.close();
 });
 
 const guestbookForm = document.querySelector('#guestbook-form');

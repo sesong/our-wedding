@@ -101,6 +101,15 @@ h2{font-size:33px;line-height:1.45;margin-bottom:15px}
 .form-status{min-height:19px;margin:3px 0 0;text-align:center;font-size:12px;color:var(--green)}
 .form-privacy{margin:0;text-align:center;color:var(--muted);font-size:10px;line-height:1.6}
 .honeypot{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.rsvp-confirmation{width:min(88vw,390px);max-width:none;padding:0;border:1px solid #e0e3d9;border-radius:4px;background:var(--paper);color:var(--ink);box-shadow:0 20px 70px #1c281c35}
+.rsvp-confirmation::backdrop{background:#1d281db3;backdrop-filter:blur(3px)}
+.rsvp-confirmation-card{padding:35px 27px 27px;text-align:center}
+.rsvp-confirm-mark{display:block;width:34px;height:34px;margin:0 auto 19px;border:1px solid #8b9c80;border-radius:50%;position:relative}
+.rsvp-confirm-mark::after{content:'';position:absolute;width:13px;height:7px;left:9px;top:10px;border-left:1.5px solid var(--green);border-bottom:1.5px solid var(--green);transform:rotate(-45deg)}
+.rsvp-confirmation .section-kicker{margin:0 0 9px;font-size:9px}
+.rsvp-confirmation h2{font-size:25px;margin:0 0 10px}
+.rsvp-confirmation-card>p:not(.section-kicker){font-family:var(--serif);font-size:13px;line-height:1.9;color:var(--muted);margin:0 0 23px}
+.rsvp-confirmation button{width:100%;min-height:45px;border:0;border-radius:2px;background:var(--green);color:#fff;font-size:13px;font-weight:700}
 .guestbook-section{background:var(--paper)}
 .guestbook-list{display:grid;gap:9px;margin-top:22px}
 .guestbook-entry{position:relative;padding:17px 18px;background:#f5f5ef;border:1px solid var(--line)}

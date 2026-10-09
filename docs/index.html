@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20261009-8" />
+    <link rel="stylesheet" href="./styles.css?v=20261009-9" />
     <script src="./config.js?v=20261009-1" defer></script>
     <script src="./guestbook-service.js" defer></script>
     <script src="./app.js?v=20261009-3" defer></script>
@@ -200,6 +200,15 @@
 
     <div class="quick-actions" aria-label="빠른 메뉴"><a href="#date">날짜</a><a href="#gallery">사진</a><a href="#location">오시는 길</a><a href="#rsvp" aria-label="참석 여부 보내기">참석</a><button id="share-button" type="button">공유</button></div>
     <dialog class="lightbox" id="lightbox" aria-label="사진 크게 보기"><button class="lightbox-close" type="button" aria-label="닫기">×</button><button class="lightbox-prev" type="button" aria-label="이전 사진">‹</button><img alt="" /><button class="lightbox-next" type="button" aria-label="다음 사진">›</button><span class="lightbox-counter"></span></dialog>
+    <dialog class="rsvp-confirmation" id="rsvp-confirmation" aria-labelledby="rsvp-confirmation-title" aria-describedby="rsvp-confirmation-message">
+      <div class="rsvp-confirmation-card">
+        <span class="rsvp-confirm-mark" aria-hidden="true"></span>
+        <p class="section-kicker">RSVP RECEIVED</p>
+        <h2 id="rsvp-confirmation-title">응답을 보냈어요</h2>
+        <p id="rsvp-confirmation-message"></p>
+        <button id="rsvp-confirmation-close" type="button">확인</button>
+      </div>
+    </dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>
 </html>
