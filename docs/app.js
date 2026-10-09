@@ -94,3 +94,112 @@ document.querySelector('#share-button').addEventListener('click', async () => {
     await copyText(location.href.split('#')[0], '청첩장 링크를 복사했습니다.');
   }
 });
+
+const guestbookService = window.GuestbookService;
+const rsvpForm = document.querySelector('#rsvp-form');
+const rsvpStatus = document.querySelector('#rsvp-status');
+const rsvpPartyField = document.querySelector('#rsvp-party-field');
+const rsvpPartySize = document.querySelector('#rsvp-party-size');
+const attendanceChoices = [...rsvpForm.querySelectorAll('input[name="attending"]')];
+
+function updateRsvpPartyField() {
+  const attending = rsvpForm.querySelector('input[name="attending"]:checked')?.value === 'yes';
+  rsvpPartyField.hidden = !attending;
+  rsvpPartySize.disabled = !attending;
+}
+
+attendanceChoices.forEach(choice => choice.addEventListener('change', updateRsvpPartyField));
+updateRsvpPartyField();
+
+rsvpForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!rsvpForm.reportValidity()) return;
+  const submitButton = rsvpForm.querySelector('[type="submit"]');
+  const formData = new FormData(rsvpForm);
+  submitButton.disabled = true;
+  rsvpStatus.textContent = '응답을 보내고 있습니다.';
+  try {
+    await guestbookService.createRsvp({
+      name: formData.get('name'),
+      attending: formData.get('attending') === 'yes',
+      partySize: formData.get('partySize'),
+      note: formData.get('note'),
+      website: formData.get('website')
+    });
+    rsvpForm.reset();
+    updateRsvpPartyField();
+    rsvpStatus.textContent = '참석 여부를 전해 주셔서 감사합니다.';
+  } catch (error) {
+    console.error('RSVP submission failed', error);
+    rsvpStatus.textContent = '응답을 보내지 못했습니다. 잠시 후 다시 시도해 주세요.';
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
+const guestbookForm = document.querySelector('#guestbook-form');
+const guestbookStatus = document.querySelector('#guestbook-status');
+const guestbookList = document.querySelector('#guestbook-list');
+
+function renderApprovedMessages(entries) {
+  guestbookList.replaceChildren();
+  if (!entries.length) {
+    const empty = document.createElement('p');
+    empty.className = 'guestbook-empty';
+    empty.textContent = '첫 축하 메시지를 남겨 주세요.';
+    guestbookList.append(empty);
+    return;
+  }
+  entries.forEach(entry => {
+    const article = document.createElement('article');
+    article.className = 'guestbook-entry';
+    const name = document.createElement('strong');
+    name.textContent = entry.name;
+    const message = document.createElement('p');
+    message.textContent = entry.message;
+    const date = document.createElement('time');
+    date.dateTime = entry.createdAt;
+    date.textContent = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', dateStyle: 'medium' }).format(new Date(entry.createdAt));
+    article.append(name, date, message);
+    guestbookList.append(article);
+  });
+}
+
+async function refreshGuestbook() {
+  try {
+    const entries = await guestbookService.listApproved();
+    renderApprovedMessages(entries);
+  } catch (error) {
+    console.error('Guestbook loading failed', error);
+    guestbookList.replaceChildren();
+    const message = document.createElement('p');
+    message.className = 'guestbook-empty';
+    message.textContent = '방명록을 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.';
+    guestbookList.append(message);
+  }
+}
+
+guestbookForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!guestbookForm.reportValidity()) return;
+  const submitButton = guestbookForm.querySelector('[type="submit"]');
+  const formData = new FormData(guestbookForm);
+  submitButton.disabled = true;
+  guestbookStatus.textContent = '메시지를 보내고 있습니다.';
+  try {
+    await guestbookService.createMessage({
+      name: formData.get('name'),
+      message: formData.get('message'),
+      website: formData.get('website')
+    });
+    guestbookForm.reset();
+    guestbookStatus.textContent = '메시지를 남겨 주셔서 감사합니다. 확인 후 공개됩니다.';
+  } catch (error) {
+    console.error('Guestbook submission failed', error);
+    guestbookStatus.textContent = '메시지를 보내지 못했습니다. 잠시 후 다시 시도해 주세요.';
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
+refreshGuestbook();

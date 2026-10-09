@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>참석·방명록 관리 | 김세송 · 박나해</title>
+    <link rel="stylesheet" href="./admin.css" />
+    <script src="./config.js" defer></script>
+    <script src="./guestbook-service.js" defer></script>
+    <script src="./admin-page.js" defer></script>
+  </head>
+  <body>
+    <main class="admin-shell">
+      <a class="back-link" href="./index.html">← 청첩장으로 돌아가기</a>
+      <header><span>WEDDING ADMIN</span><h1>참석·방명록 관리</h1><p>참석 응답은 관리자만 볼 수 있고, 방명록은 승인한 글만 공개됩니다.</p></header>
+      <form id="login-form" class="login-form">
+        <div id="email-field" class="email-field"><label for="admin-email">관리자 이메일</label><input id="admin-email" type="email" autocomplete="username" /></div>
+        <label for="admin-password">관리자 비밀번호</label>
+        <div><input id="admin-password" type="password" autocomplete="current-password" required /><button type="submit">확인</button></div>
+      </form>
+      <p id="admin-status" role="status"></p>
+      <div id="admin-content" hidden>
+        <div class="admin-toolbar"><strong id="pending-count">대기 중 0개</strong><button id="refresh-button" type="button">새로고침</button><button id="logout-button" type="button">로그아웃</button></div>
+        <section class="admin-rsvps" aria-labelledby="rsvp-admin-title">
+          <h2 id="rsvp-admin-title">참석 응답</h2>
+          <p id="rsvp-summary" class="rsvp-summary"></p>
+          <div id="rsvp-list"></div>
+        </section>
+        <h2 class="admin-subheading">방명록</h2>
+        <div id="admin-list"></div>
+      </div>
+    </main>
+  </body>
+</html>

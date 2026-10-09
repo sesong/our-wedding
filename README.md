@@ -10,9 +10,15 @@ GitHub Pages 배포 후 [https://sesong.github.io/our-wedding/](https://sesong.g
 
 - 예식 날짜와 장소, 지하철·주차 안내, 네이버 지도·카카오맵 링크
 - `pictures/`의 사진 20장을 모바일용으로 줄인 갤러리와 확대 보기
-- 축의금 계좌번호 복사, 청첩장 공유, 캘린더 일정 저장
+- 날짜 카운트다운, 축의금 계좌번호 복사, 청첩장 공유
+- 하객 참석 여부 응답과 승인 후 공개되는 방명록
+- 관리자 화면에서 참석 현황 확인 및 방명록 승인
 
-방명록은 이번 공개본에 넣지 않았습니다.
+## 참석 여부와 방명록 설정
+
+- Supabase 프로젝트의 Project URL과 `sb_publishable_` 키는 `docs/config.js`에 설정합니다. 이 공개용 키는 웹페이지에서 사용하며, Secret key나 `service_role` 키는 여기에 넣지 마세요.
+- `supabase/schema.sql`을 Supabase Dashboard의 SQL Editor에서 실행해 테이블과 접근 정책을 만듭니다. 실행 전에 Authentication의 Users에서 `kimsesong@gmail.com` 관리자 사용자를 먼저 생성해야 관리자 권한도 등록됩니다.
+- 관리자 화면은 `https://sesong.github.io/our-wedding/admin.html`입니다. 참석 응답은 로그인한 관리자만 조회할 수 있고, 방명록은 승인한 글만 공개됩니다.
 
 ## 수정하기
 

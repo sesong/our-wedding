@@ -15,8 +15,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20261009-6" />
-    <script src="./app.js?v=20261009-2" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=20261009-8" />
+    <script src="./config.js?v=20261009-1" defer></script>
+    <script src="./guestbook-service.js" defer></script>
+    <script src="./app.js?v=20261009-3" defer></script>
   </head>
   <body>
     <div class="page-shell">
@@ -120,8 +122,36 @@
           </div>
         </section>
 
+        <section class="rsvp-section section-pad" id="rsvp" aria-labelledby="rsvp-title">
+          <p class="section-kicker">05 / RSVP</p>
+          <h2 id="rsvp-title">참석 여부</h2>
+          <p class="section-description">예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.</p>
+          <form id="rsvp-form" class="guest-form">
+            <label for="rsvp-name">성함</label>
+            <input id="rsvp-name" name="name" type="text" maxlength="30" autocomplete="name" required />
+            <fieldset class="choice-fieldset">
+              <legend>참석 여부</legend>
+              <label><input type="radio" name="attending" value="yes" required /> 참석합니다</label>
+              <label><input type="radio" name="attending" value="no" /> 참석이 어렵습니다</label>
+            </fieldset>
+            <div id="rsvp-party-field" class="form-field">
+              <label for="rsvp-party-size">총 참석 인원 <span>(본인 포함)</span></label>
+              <select id="rsvp-party-size" name="partySize">
+                <option value="1">1명</option><option value="2">2명</option><option value="3">3명</option><option value="4">4명</option>
+                <option value="5">5명</option><option value="6">6명</option><option value="7">7명</option><option value="8">8명</option>
+              </select>
+            </div>
+            <label for="rsvp-note">전하실 말씀 <span>(선택)</span></label>
+            <textarea id="rsvp-note" name="note" rows="3" maxlength="300"></textarea>
+            <label class="honeypot" aria-hidden="true">비워 두세요<input name="website" tabindex="-1" autocomplete="off" /></label>
+            <button class="form-submit" type="submit">참석 여부 보내기</button>
+            <p id="rsvp-status" class="form-status" role="status" aria-live="polite"></p>
+            <p class="form-privacy">응답 내용은 예식 준비를 위해 신랑·신부만 확인합니다.</p>
+          </form>
+        </section>
+
         <section class="account-section section-pad" id="account" aria-labelledby="account-title">
-          <p class="section-kicker">05 / THANK YOU</p>
+          <p class="section-kicker">06 / THANK YOU</p>
           <h2 id="account-title">마음 전하실 곳</h2>
           <details class="account-card">
             <summary><span>신랑 측 계좌</span><span class="summary-icon" aria-hidden="true">＋</span></summary>
@@ -141,6 +171,22 @@
           </details>
         </section>
 
+        <section class="guestbook-section section-pad" id="guestbook" aria-labelledby="guestbook-title">
+          <p class="section-kicker">07 / GUESTBOOK</p>
+          <h2 id="guestbook-title">축하의 마음</h2>
+          <p class="section-description">따뜻한 축하를 남겨 주세요.<br />메시지는 확인 후 공개됩니다.</p>
+          <form id="guestbook-form" class="guest-form">
+            <label for="guestbook-name">성함</label>
+            <input id="guestbook-name" name="name" type="text" maxlength="30" autocomplete="name" required />
+            <label for="guestbook-message">축하 메시지</label>
+            <textarea id="guestbook-message" name="message" rows="4" minlength="2" maxlength="500" required></textarea>
+            <label class="honeypot" aria-hidden="true">비워 두세요<input name="website" tabindex="-1" autocomplete="off" /></label>
+            <button class="form-submit" type="submit">축하 남기기</button>
+            <p id="guestbook-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <div id="guestbook-list" class="guestbook-list" aria-live="polite"></div>
+        </section>
+
         <section class="closing-section" aria-label="마지막 인사">
           <img src="./images/DSCF1570.jpg" alt="꽃을 들고 웃고 있는 세송과 나해" loading="lazy" />
           <div class="closing-overlay"><p>우리의 시작을<br />함께해 주세요.</p><span>SESONG &amp; NAHAE</span></div>
@@ -152,7 +198,7 @@
       </footer>
     </div>
 
-    <div class="quick-actions" aria-label="빠른 메뉴"><a href="#date">날짜</a><a href="#gallery">사진</a><a href="#location">오시는 길</a><button id="share-button" type="button">공유</button></div>
+    <div class="quick-actions" aria-label="빠른 메뉴"><a href="#date">날짜</a><a href="#gallery">사진</a><a href="#location">오시는 길</a><a href="#rsvp" aria-label="참석 여부 보내기">참석</a><button id="share-button" type="button">공유</button></div>
     <dialog class="lightbox" id="lightbox" aria-label="사진 크게 보기"><button class="lightbox-close" type="button" aria-label="닫기">×</button><button class="lightbox-prev" type="button" aria-label="이전 사진">‹</button><img alt="" /><button class="lightbox-next" type="button" aria-label="다음 사진">›</button><span class="lightbox-counter"></span></dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>
