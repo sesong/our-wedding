@@ -21,7 +21,7 @@ h1{font-size:clamp(43px,10vw,61px);line-height:1.4;margin-bottom:17px}
 h1 em,.venue-content h3 em{font-style:normal;color:var(--green)}
 .hero-names{font-family:var(--serif);font-size:17px;margin-bottom:12px;letter-spacing:.06em}
 .hero-names .decorative-star{width:15px;height:15px;color:var(--orange);vertical-align:middle;margin:0 10px}
-.hero-date{font-size:11px;font-weight:700;letter-spacing:.16em;margin-bottom:30px}
+.hero-date{font-size:11px;font-weight:700;letter-spacing:.04em;margin-bottom:30px}
 .hero-figure{position:relative;margin:0 auto;width:100%;height:430px;border-radius:49% 49% 8px 8px / 31% 31% 8px 8px;overflow:hidden;background:var(--sage)}
 .hero-figure img{width:100%;height:100%;object-fit:cover;object-position:center 47%}
 .hero-figure figcaption{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#fff;font-family:var(--serif);font-size:14px;text-shadow:0 2px 12px #2229}
