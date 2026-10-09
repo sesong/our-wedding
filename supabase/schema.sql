@@ -43,11 +43,13 @@ grant insert (name, message) on public.guestbook_entries to anon;
 -- Signed-in users still need to pass the moderator RLS policy below.
 grant select on public.guestbook_entries to authenticated;
 grant update (status, reviewed_at) on public.guestbook_entries to authenticated;
+grant delete on public.guestbook_entries to authenticated;
 grant select (user_id) on public.guestbook_admins to authenticated;
 
 -- Guests can submit responses but can never read them through the public API.
 grant insert (name, attending, party_size, note) on public.rsvp_responses to anon;
 grant select on public.rsvp_responses to authenticated;
+grant delete on public.rsvp_responses to authenticated;
 
 create schema if not exists private;
 revoke all on schema private from public;
@@ -94,6 +96,12 @@ to authenticated
 using ((select private.is_guestbook_admin()))
 with check ((select private.is_guestbook_admin()));
 
+drop policy if exists "Moderators delete entries" on public.guestbook_entries;
+create policy "Moderators delete entries"
+on public.guestbook_entries for delete
+to authenticated
+using ((select private.is_guestbook_admin()));
+
 drop policy if exists "Moderators see own membership" on public.guestbook_admins;
 create policy "Moderators see own membership"
 on public.guestbook_admins for select
@@ -109,6 +117,12 @@ with check (true);
 drop policy if exists "Moderators see RSVP responses" on public.rsvp_responses;
 create policy "Moderators see RSVP responses"
 on public.rsvp_responses for select
+to authenticated
+using ((select private.is_guestbook_admin()));
+
+drop policy if exists "Moderators delete RSVP responses" on public.rsvp_responses;
+create policy "Moderators delete RSVP responses"
+on public.rsvp_responses for delete
 to authenticated
 using ((select private.is_guestbook_admin()));
 

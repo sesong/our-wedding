@@ -167,6 +167,24 @@
     });
   }
 
+  async function deleteEntry(id) {
+    if (mode() !== 'supabase') throw new Error('방명록 연결을 준비하고 있습니다.');
+    const token = await accessToken();
+    await verifyModerator(token);
+    await fetchJson(`${supabaseUrl}/rest/v1/guestbook_entries?id=eq.${encodeURIComponent(id)}`, {
+      method: 'DELETE', headers: supabaseHeaders(token)
+    });
+  }
+
+  async function deleteRsvp(id) {
+    if (mode() !== 'supabase') throw new Error('참석 응답 연결을 준비하고 있습니다.');
+    const token = await accessToken();
+    await verifyModerator(token);
+    await fetchJson(`${supabaseUrl}/rest/v1/rsvp_responses?id=eq.${encodeURIComponent(id)}`, {
+      method: 'DELETE', headers: supabaseHeaders(token)
+    });
+  }
+
   async function setStatus(id, status) {
     if (!['approved', 'rejected'].includes(status)) throw new Error('올바른 상태가 아닙니다.');
     if (mode() === 'supabase') {
@@ -197,5 +215,5 @@
     sessionStorage.removeItem(localPasswordKey);
   }
 
-  window.GuestbookService = { mode, listApproved, createMessage, createRsvp, login, listAll, listRsvps, setStatus, hasStoredLogin, logout };
+  window.GuestbookService = { mode, listApproved, createMessage, createRsvp, login, listAll, listRsvps, setStatus, deleteEntry, deleteRsvp, hasStoredLogin, logout };
 })();

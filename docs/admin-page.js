@@ -72,6 +72,25 @@ function renderRsvp(response) {
     note.textContent = response.note;
     article.append(note);
   }
+  const actions = document.createElement('div');
+  actions.className = 'entry-actions';
+  const deleteButton = document.createElement('button');
+  deleteButton.type = 'button';
+  deleteButton.className = 'delete';
+  deleteButton.textContent = '응답 삭제';
+  deleteButton.addEventListener('click', async () => {
+    if (!window.confirm(`${response.name}님의 참석 응답을 삭제할까요?`)) return;
+    deleteButton.disabled = true;
+    try {
+      await service.deleteRsvp(response.id);
+      await loadEntries();
+    } catch (error) {
+      status.textContent = error.message;
+      deleteButton.disabled = false;
+    }
+  });
+  actions.append(deleteButton);
+  article.append(actions);
   rsvpList.append(article);
 }
 
@@ -111,6 +130,22 @@ function renderEntry(entry) {
     });
     actions.append(button);
   }
+  const deleteButton = document.createElement('button');
+  deleteButton.type = 'button';
+  deleteButton.textContent = '삭제';
+  deleteButton.className = 'delete';
+  deleteButton.addEventListener('click', async () => {
+    if (!window.confirm(`${entry.name}님의 방명록을 삭제할까요?`)) return;
+    deleteButton.disabled = true;
+    try {
+      await service.deleteEntry(entry.id);
+      await loadEntries();
+    } catch (error) {
+      status.textContent = error.message;
+      deleteButton.disabled = false;
+    }
+  });
+  actions.append(deleteButton);
   article.append(head, message, actions);
   list.append(article);
 }
