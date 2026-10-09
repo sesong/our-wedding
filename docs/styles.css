@@ -59,11 +59,12 @@ h2{font-size:33px;line-height:1.45;margin-bottom:15px}
 .countdown strong{color:#c07a50}
 .gallery-section{background:var(--cream)}
 .gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:28px -35px 0}
+.gallery-pair{grid-column:span 2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .gallery-item{display:block;border:0;padding:0;background:#e1e3d9;overflow:hidden;aspect-ratio:3/4;position:relative}
-.gallery-item:nth-child(7n+1),.gallery-item:nth-child(7n+6){grid-column:span 2;aspect-ratio:5/4}
+.gallery-grid>.gallery-item:nth-child(7n+1),.gallery-grid>.gallery-item:nth-child(7n+6){grid-column:span 2;aspect-ratio:5/4}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
 .gallery-item:hover img,.gallery-item:focus-visible img{transform:scale(1.04)}
-.gallery-item:nth-child(7n+1) img,.gallery-item:nth-child(7n+6) img{object-position:center 47%}
+.gallery-grid>.gallery-item:nth-child(7n+1) img,.gallery-grid>.gallery-item:nth-child(7n+6) img{object-position:center 47%}
 .gallery-note{text-align:center;font-size:11px;color:var(--muted);margin:19px 0 0}
 .location-section{background:var(--paper)}
 .venue-card{background:#e9eee7;overflow:hidden;border-radius:3px;margin:29px 0 17px}
