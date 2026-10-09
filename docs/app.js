@@ -207,7 +207,7 @@ guestbookForm.addEventListener('submit', async event => {
       website: formData.get('website')
     });
     guestbookForm.reset();
-    guestbookStatus.textContent = '메시지를 남겨 주셔서 감사합니다. 확인 후 공개됩니다.';
+    guestbookStatus.textContent = '메시지를 남겨 주셔서 감사합니다. 승인 후 공개됩니다.';
     guestbookConfirmation.showModal();
   } catch (error) {
     console.error('Guestbook submission failed', error);
