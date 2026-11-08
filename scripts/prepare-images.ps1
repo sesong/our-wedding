@@ -1,12 +1,12 @@
 Add-Type -AssemblyName System.Drawing
 
 $ErrorActionPreference = 'Stop'
-$sourceDir = Join-Path $PSScriptRoot '..\pictures'
+$sourceDir = Join-Path $PSScriptRoot '..\pictures_new'
 $outputDir = Join-Path $PSScriptRoot '..\docs\images'
 $contactSheetPath = Join-Path $PSScriptRoot '..\contact-sheet.jpg'
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
-$files = Get-ChildItem -LiteralPath $sourceDir -Filter '*.jpg' | Sort-Object Name
+$files = Get-ChildItem -LiteralPath $sourceDir -File | Where-Object { $_.Extension -match '^\.jpe?g$' } | Sort-Object Name
 $encoder = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object MimeType -eq 'image/jpeg'
 $quality = [System.Drawing.Imaging.Encoder]::Quality
 $encoderParams = [System.Drawing.Imaging.EncoderParameters]::new(1)
