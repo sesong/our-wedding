@@ -7,6 +7,11 @@ $contactSheetPath = Join-Path $PSScriptRoot '..\contact-sheet.jpg'
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
 $files = Get-ChildItem -LiteralPath $sourceDir -File | Where-Object { $_.Extension -match '^\.jpe?g$' } | Sort-Object Name
+$sourceNames = @{}
+foreach ($file in $files) { $sourceNames[$file.Name.ToLowerInvariant()] = $true }
+Get-ChildItem -LiteralPath $outputDir -File | Where-Object {
+    $_.Extension -match '^\.jpe?g$' -and $_.Name.ToLowerInvariant() -ne 'location-map.jpg' -and -not $sourceNames.ContainsKey($_.Name.ToLowerInvariant())
+} | Remove-Item -Force
 $encoder = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object MimeType -eq 'image/jpeg'
 $quality = [System.Drawing.Imaging.Encoder]::Quality
 $encoderParams = [System.Drawing.Imaging.EncoderParameters]::new(1)

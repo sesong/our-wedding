@@ -5,3 +5,5 @@ preview*.png
 node_modules/
 pictures/
 pictures_new/
+*The New Chapter.html
+*The New Chapter_files/
