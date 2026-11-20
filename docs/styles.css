@@ -302,3 +302,116 @@ h2{font-size:30px;line-height:1.5;letter-spacing:-.07em;color:var(--ink)}
   .gallery-page-grid{margin-left:-24px;margin-right:-24px}
   .invitation-photo{margin-left:-24px;margin-right:-24px}
 }
+
+/* Vintage film palette: espresso, mocha, faded parchment, and warm brass. */
+:root{
+  color-scheme:dark;
+  --cream:#201d1a;
+  --paper:#2b2723;
+  --ink:#f0e9e0;
+  --muted:#b4aaa0;
+  --sage:#37312c;
+  --green:#b3a38f;
+  --orange:#c1ad96;
+  --line:#f0e9e024;
+}
+body{
+  background-color:#13110f;
+  background-image:
+    radial-gradient(ellipse at 50% 0%,#39332d 0%,transparent 52%),
+    linear-gradient(160deg,#13110f,#1d1a17 52%,#100e0c);
+  color:var(--ink)
+}
+.page-shell{position:relative;background:var(--cream);box-shadow:0 0 90px #0009}
+.site-header,.gallery-page-header{
+  background:#201d1aed;
+  border-bottom:1px solid #f0e9e018;
+  box-shadow:0 6px 25px #0004
+}
+.wordmark,.gallery-page-wordmark{color:#f0e9e0}
+.hero{background:#1b1916}
+.hero-figure img{filter:none}
+.hero--photo-026{height:min(96svh,860px);min-height:700px}
+.hero--photo-026 .hero-copy{justify-content:flex-end;padding:0 26px 28px}
+.hero:after{
+  background:
+    linear-gradient(180deg,#17151335 0%,#17151300 30%,#17151326 59%,#171513d0 100%);
+  box-shadow:inset 0 0 70px #17151335
+}
+.hero h1,.hero-names{color:#fff9f1;text-shadow:0 2px 25px #171513b3,0 0 34px #d0c4b436}
+.hero .eyebrow{color:#e2d7ca}
+.hero-date,.hero-bottom{color:#f0e9e0d9}
+.section-kicker,.venue-label,.date-subtitle,.calendar-top,.calendar-grid .wedding-day,
+.family-lines strong,.account-card summary,.summary-icon{color:var(--green)}
+h2{color:var(--ink)}
+.english-section-title{color:#d3c5b5}
+.section-description,.invitation-message{color:#c8beb4}
+.invitation,.gallery-section,.location-section,.guestbook-section{background:#25211e}
+.date-section,.rsvp-section,.account-section{background:#2d2925}
+.page-shell main>section[id]{position:relative;isolation:isolate}
+.page-shell main>section[id]::before{
+  content:'';position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.42;
+  background-image:
+    radial-gradient(1px 1px at 17% 23%,#e9e0d333 98%,transparent),
+    radial-gradient(1px 1px at 81% 14%,#fff2 98%,transparent),
+    radial-gradient(1.2px 1.2px at 68% 68%,#d1c5b533 98%,transparent);
+  background-size:173px 211px,239px 277px,313px 353px
+}
+.invitation-photo img{filter:sepia(.04) saturate(.96) contrast(.98)}
+.calendar{background:#25211e;border-color:#f0e9e024;box-shadow:0 10px 35px #100e0c55}
+.calendar-top{border-color:var(--line)}
+.calendar-grid .day-label,.calendar-grid .sunday{color:#b7ada3}
+.calendar-grid .wedding-day{background:#b5a18b;color:#1d1915;box-shadow:0 0 18px #c1ad9630}
+.countdown{color:#c4bab0}.countdown strong{color:#d2c3b0}
+.gallery-item{background:#37312c;outline-color:#c1ad96;box-shadow:inset 0 0 0 1px #f0e9e014}
+.gallery-item img{filter:sepia(.05) saturate(.96) contrast(.98)}
+.gallery-more{background:#37312c;color:#f4eee7}
+.gallery-more:before{background:rgba(24,21,18,.68);backdrop-filter:sepia(.08)}
+.gallery-more:hover:before,.gallery-more:focus-visible:before{background:rgba(24,21,18,.76)}
+.gallery-note{color:#b4aaa0}
+.venue-card{background:#2b2723;border-color:#f0e9e01f}
+.location-map{background:#292622}
+.location-map img{filter:sepia(.04) brightness(.94) saturate(.92)}
+.venue-content p:not(.venue-label),.travel-list span{color:#c8beb4}
+.travel-list,.travel-list div{border-color:var(--line)}
+.travel-list strong{color:#d0c2b2}
+.map-links .map-link--naver{box-shadow:0 3px 12px #03c75a32}
+.map-links .map-link--kakao{box-shadow:0 3px 12px #fee5002e}
+.guest-form{background:#25211e;border-color:var(--line)}
+.guest-form>label:not(.honeypot),.choice-fieldset legend{color:#d5c7b8}
+.guest-form input[type="text"],.guest-form textarea,.guest-form select{
+  background:#37312c;border-color:#f0e9e02b;color:#f0e9e0;color-scheme:dark
+}
+.guest-form input::placeholder,.guest-form textarea::placeholder{color:#a99f95}
+.choice-fieldset input{accent-color:#b3a38f}
+.form-submit,.rsvp-confirmation button{background:#b4a18b;color:#211d19}
+.form-submit:hover,.rsvp-confirmation button:hover{background:#c8b9a7}
+.form-status,.guestbook-entry strong,.account-entry .account-holder{color:#d0c2b2}
+.form-privacy,.guestbook-empty,.guestbook-entry time{color:#aa9f95}
+.guestbook-entry{background:#2d2925;border-color:var(--line)}
+.guestbook-entry p{color:#d8d0c8}
+.account-card,.account-card:last-child{border-color:var(--line)}
+.account-entry{background:#25211e;border-color:#f0e9e01f}
+.account-entry button{background:#37312c;border-color:#f0e9e02b;color:#f0e9e0}
+.account-detail button:hover{background:#46413b}
+.closing-section{background:#1b1916}
+.closing-section img{filter:brightness(.72) sepia(.08) saturate(.94) blur(2px)}
+.closing-section:after{background:linear-gradient(0deg,#171513bd,transparent 75%)}
+.closing-overlay{color:#f4eee7;text-shadow:0 2px 20px #13110f,0 0 32px #d0c4b436}
+.site-footer{background:#1b1916;color:#b4aaa0}
+.quick-actions{background:#201d1aed;border-top:1px solid #f0e9e018;box-shadow:0 -8px 30px #0007}
+.quick-actions a,.quick-actions button{color:#e2dbd3}
+.quick-actions a+a,.quick-actions button{border-color:#f0e9e01a}
+.quick-actions button{color:#c1ad96}
+.lightbox{background:#13110f;color:#f4eee7}
+.lightbox::backdrop{background:#13110ff5}
+.lightbox button{color:#f4eee7;background:#38332dee;box-shadow:0 2px 16px #0008}
+.toast{background:#b4a18b;color:#211d19}
+.gallery-page-back,.gallery-page-wordmark{color:var(--ink)}
+.gallery-page-back span,.gallery-page-footer a{color:#b4aaa0}
+.gallery-page-footer a span{color:#c1ad96}
+.rsvp-confirmation{background:#2b2723;border-color:#f0e9e02b;color:var(--ink)}
+.rsvp-confirmation::backdrop{background:#13110fc9}
+.rsvp-confirmation-card>p:not(.section-kicker){color:#c8beb4}
+.rsvp-confirm-mark{border-color:#b3a38f}
+.rsvp-confirm-mark::after{border-color:#c1ad96}
