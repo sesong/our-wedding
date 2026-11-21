@@ -8,7 +8,7 @@ GitHub Pages 배포 후 [https://sesong.github.io/our-wedding/](https://sesong.g
 
 ## 구성
 
-- 예식 날짜와 장소, 지하철·주차 안내, 네이버 지도·카카오맵 링크
+- 예식 날짜와 장소, 지하철·주차 안내, 카카오 지도 API와 네이버·카카오 지도 링크
 - `pictures_new/`의 번호 순 사진 28장 갤러리와 배너 이미지 2장
 - 날짜 카운트다운, 축의금 계좌번호 복사, 청첩장 공유
 - 하객 참석 여부 응답과 승인 후 공개되는 방명록
@@ -21,8 +21,14 @@ GitHub Pages 배포 후 [https://sesong.github.io/our-wedding/](https://sesong.g
 - 관리자 화면에서 응답이나 방명록을 삭제하려면 `supabase/migrations/20261009_admin_delete.sql`도 SQL Editor에서 실행하세요. 삭제 권한은 관리자 로그인 사용자에게만 부여됩니다.
 - 관리자 화면은 `https://sesong.github.io/our-wedding/admin.html`입니다. 참석 응답은 로그인한 관리자만 조회할 수 있고, 방명록은 승인한 글만 공개됩니다.
 
+## 카카오 지도 설정
+
+- Kakao Developers에서 앱을 만들고 [카카오맵 API](https://developers.kakao.com/docs/ko/kakaomap/common)를 활성화한 뒤 JavaScript 키를 발급받으세요.
+- 앱의 JavaScript SDK 허용 도메인에 `http://localhost:3000`과 `https://sesong.github.io`를 등록하세요.
+- 발급한 JavaScript 키를 `docs/config.js`의 `kakaoMapJavascriptKey`에 입력하세요. 브라우저용 JavaScript 키는 웹페이지에 공개되므로 허용 도메인을 제한해야 합니다.
+
 ## 수정하기
 
 - 최종 인사말이 정해지면 [docs/index.html](docs/index.html)의 초대 문구를 수정하세요.
-- 원본 사진은 로컬 `pictures_new/`에 두고 Git에서 제외했습니다. 공개용으로 크기를 줄인 사진은 `docs/images/`에 있습니다. 사진을 추가하거나 바꾸면 Windows PowerShell에서 `powershell -ExecutionPolicy Bypass -File scripts/prepare-images.ps1`을 실행하세요.
+- 원본 사진은 로컬 `pictures_new/`에 두고 Git에서 제외했습니다. 공개용으로 크기를 줄인 사진은 `docs/images/`에 있습니다. 사진을 추가하거나 바꾸면 Windows PowerShell에서 `powershell -ExecutionPolicy Bypass -File scripts/prepare-images.ps1`을 실행하세요. `cheekpoke (1).JPG`, `cheekpoke (2).JPG` 원본으로 워터마크 없는 좌우 배치 투명 PNG 배너2를 함께 생성합니다.
 - GitHub Pages는 `main` 브랜치의 `/docs` 폴더에서 배포합니다. 정적 파일만으로 동작하며 별도 빌드가 필요하지 않습니다.

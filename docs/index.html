@@ -14,31 +14,33 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=20261120-mocha-film-4" />
-    <script src="./config.js?v=20261009-1" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Urbanist:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css?v=20261121-cursive-intro-1" />
+    <script src="./config.js?v=20261120-kakao-map" defer></script>
+    <script src="./site-motion.js?v=20261121-replay-1" defer></script>
+    <script src="./kakao-map.js?v=20261120-1" defer></script>
     <script src="./guestbook-service.js?v=20261009-2" defer></script>
     <script src="./app.js?v=20261108-2" defer></script>
   </head>
   <body>
+    <div class="opening-intro" aria-hidden="true">
+      <div class="opening-intro-lines">
+        <span class="opening-intro-line">Sesong Kim</span>
+        <span class="opening-intro-line opening-intro-ampersand">&amp;</span>
+        <span class="opening-intro-line">Nahae Park</span>
+      </div>
+    </div>
     <div class="page-shell">
-      <header class="site-header">
-        <a class="wordmark" href="#top" aria-label="맨 위로">S &amp; N</a>
-      </header>
-
       <main id="top">
-        <section class="hero hero--photo-026" aria-labelledby="hero-title">
+        <section class="hero hero--photo-026" aria-label="김세송과 박나해의 결혼식 안내">
           <div class="hero-copy">
-            <p class="eyebrow">A LITTLE NOTE FROM US</p>
-            <h1 id="hero-title">우리,<br /><em>결혼합니다.</em></h1>
             <p class="hero-names">김세송 <span aria-hidden="true">&amp;</span> 박나해</p>
-            <p class="hero-date">2027년 2월 20일 토요일 오후 3시</p>
+            <p class="hero-date">2027년 2월 20일 토요일 · 오후 3시</p>
+            <p class="hero-location">대검찰청 별관 4층 예그리나홀</p>
           </div>
           <figure class="hero-figure">
-            <img src="./images/026.JPG" alt="푸른 정원에서 올려다보며 미소 짓는 세송과 나해" fetchpriority="high" />
-            <figcaption>함께여서 더 좋은 날들</figcaption>
+            <img src="./images/026.JPG" alt="정원에서 올려다보며 미소 짓는 세송과 나해" fetchpriority="high" />
           </figure>
-          <div class="hero-bottom" aria-hidden="true"><span>SCROLL TO OUR STORY</span><span>↓</span></div>
         </section>
 
         <section class="invitation section-pad" aria-labelledby="invitation-title">
@@ -49,7 +51,7 @@
             <div><span>김기두 · 신순균의 장남</span><strong>김세송</strong></div>
             <div><span>박준승 · 오다겸의 장녀</span><strong>박나해</strong></div>
           </div>
-          <figure class="invitation-photo"><img src="./images/배너2.JPG" alt="세송과 나해의 웨딩 단독 사진" loading="lazy" /></figure>
+          <figure class="invitation-photo"><img src="./images/banner2.png?v=20261121-transparent-3" alt="서로의 볼을 장난스럽게 찌르는 세송과 나해의 인물 사진" loading="lazy" /></figure>
         </section>
 
         <section class="date-section section-pad" id="date" aria-labelledby="date-title">
@@ -146,9 +148,9 @@
         <section class="location-section section-pad" id="location" aria-labelledby="location-title">
           <h2 class="english-section-title" id="location-title">LOCATION</h2>
           <div class="venue-card">
-            <figure class="location-map">
-              <img src="./images/location-map.jpg?v=20261007-7" alt="서초역 6번 출구에서 본청 입구를 거쳐 대검찰청 별관 4층 예그리나홀까지 가는 길과 주변 기관을 표시한 약도" loading="lazy" decoding="async" />
-            </figure>
+            <div class="location-map" id="kakao-map" role="region" aria-label="예그리나홀 카카오 지도">
+              <p class="location-map-status" id="kakao-map-status" role="status" aria-live="polite">카카오 지도를 불러오고 있습니다.</p>
+            </div>
             <div class="venue-content">
               <p class="venue-label">WEDDING VENUE</p>
               <h3>공소청(본청) 예식장 · 예그리나홀</h3>

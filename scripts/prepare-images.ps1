@@ -4,13 +4,19 @@ $ErrorActionPreference = 'Stop'
 $sourceDir = Join-Path $PSScriptRoot '..\pictures_new'
 $outputDir = Join-Path $PSScriptRoot '..\docs\images'
 $contactSheetPath = Join-Path $PSScriptRoot '..\contact-sheet.jpg'
+$bannerOneName = ([char]0xBC30).ToString() + [char]0xB108 + '.jpg'
+$bannerTwoName = ([char]0xBC30).ToString() + [char]0xB108 + '2.JPG'
+$bannerOutputName = 'banner2.png'
+$preservedBannerNames = @($bannerOneName.ToLowerInvariant())
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
-$files = Get-ChildItem -LiteralPath $sourceDir -File | Where-Object { $_.Extension -match '^\.jpe?g$' } | Sort-Object Name
+$allFiles = Get-ChildItem -LiteralPath $sourceDir -File | Where-Object { $_.Extension -match '^\.jpe?g$' } | Sort-Object Name
+$bannerSourceNames = @('cheekpoke (1).jpg', 'cheekpoke (2).jpg', $bannerTwoName.ToLowerInvariant())
+$files = @($allFiles | Where-Object { $_.Name.ToLowerInvariant() -notin $bannerSourceNames })
 $sourceNames = @{}
 foreach ($file in $files) { $sourceNames[$file.Name.ToLowerInvariant()] = $true }
 Get-ChildItem -LiteralPath $outputDir -File | Where-Object {
-    $_.Extension -match '^\.jpe?g$' -and $_.Name.ToLowerInvariant() -ne 'location-map.jpg' -and -not $sourceNames.ContainsKey($_.Name.ToLowerInvariant())
+    $_.Extension -match '^\.jpe?g$' -and $_.Name.ToLowerInvariant() -notin $preservedBannerNames -and -not $sourceNames.ContainsKey($_.Name.ToLowerInvariant())
 } | Remove-Item -Force
 $encoder = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object MimeType -eq 'image/jpeg'
 $quality = [System.Drawing.Imaging.Encoder]::Quality
@@ -70,6 +76,38 @@ for ($i = 0; $i -lt $files.Count; $i++) {
         $sheetGraphics.DrawString($file.Name, $font, [System.Drawing.Brushes]::Black, [float]$thumbX, [float]($thumbY + $thumbH + 4))
         Write-Output "$($file.Name) $($source.Width)x$($source.Height) orientation=$orientation"
     } finally { $source.Dispose() }
+}
+
+$cheekPokePairs = @(
+    @{ Name = 'cheekpoke (1).JPG'; CropX = 550; CropY = 750; TargetX = 90 },
+    @{ Name = 'cheekpoke (2).JPG'; CropX = 550; CropY = 750; TargetX = 890 }
+)
+$availableBannerSources = @($cheekPokePairs | Where-Object { $allFiles.Name -contains $_.Name })
+if ($availableBannerSources.Count -eq 2) {
+    $bannerPath = Join-Path $outputDir $bannerOutputName
+    Remove-Item -LiteralPath $bannerPath -Force -ErrorAction SilentlyContinue
+    $banner = [System.Drawing.Bitmap]::new(1600, 800, [System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
+    $bannerGraphics = [System.Drawing.Graphics]::FromImage($banner)
+    try {
+        $bannerGraphics.Clear([System.Drawing.Color]::Transparent)
+        $bannerGraphics.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+        $bannerGraphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
+        $bannerGraphics.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
+        foreach ($pair in $cheekPokePairs) {
+            $sourceFile = $allFiles | Where-Object Name -eq $pair.Name | Select-Object -First 1
+            $source = [System.Drawing.Image]::FromFile($sourceFile.FullName)
+            try {
+                $sourceRect = [System.Drawing.Rectangle]::new($pair.CropX, $pair.CropY, 4200, 4200)
+                $targetRect = [System.Drawing.Rectangle]::new($pair.TargetX, 90, 620, 620)
+                $bannerGraphics.DrawImage($source, $targetRect, $sourceRect, [System.Drawing.GraphicsUnit]::Pixel)
+            } finally { $source.Dispose() }
+        }
+        $banner.Save($bannerPath, [System.Drawing.Imaging.ImageFormat]::Png)
+        Write-Output 'Created the paired cheekpoke banner from the originals.'
+    } finally {
+        $bannerGraphics.Dispose()
+        $banner.Dispose()
+    }
 }
 
 $sheet.Save($contactSheetPath, $encoder, $encoderParams)

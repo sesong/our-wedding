@@ -331,8 +331,7 @@ body{
 .wordmark,.gallery-page-wordmark{color:#f0e9e0}
 .hero{background:#1b1916}
 .hero-figure img{filter:none}
-.hero--photo-026{height:min(96svh,860px);min-height:700px}
-.hero--photo-026 .hero-copy{justify-content:flex-end;padding:0 26px 28px}
+.hero--photo-026 .hero-copy{justify-content:flex-end;padding:0 26px 28px;gap:8px}
 .hero:after{
   background:
     linear-gradient(180deg,#17151335 0%,#17151300 30%,#17151326 59%,#171513d0 100%);
@@ -371,7 +370,6 @@ h2{color:var(--ink)}
 .gallery-note{color:#b4aaa0}
 .venue-card{background:#2b2723;border-color:#f0e9e01f}
 .location-map{background:#292622}
-.location-map img{filter:sepia(.04) brightness(.94) saturate(.92)}
 .venue-content p:not(.venue-label),.travel-list span{color:#c8beb4}
 .travel-list,.travel-list div{border-color:var(--line)}
 .travel-list strong{color:#d0c2b2}
@@ -415,3 +413,56 @@ h2{color:var(--ink)}
 .rsvp-confirmation-card>p:not(.section-kicker){color:#c8beb4}
 .rsvp-confirm-mark{border-color:#b3a38f}
 .rsvp-confirm-mark::after{border-color:#c1ad96}
+
+/* Opening title, clean first view, scroll reveals, and Kakao map. */
+.opening-intro{
+  position:fixed;z-index:100;inset:0;display:grid;place-items:center;
+  background:#11100f;color:#f0e9e0;animation:openingIntroOut .65s ease 2.65s forwards;
+  pointer-events:none
+}
+.opening-intro-lines{display:grid;justify-items:center;gap:13px}
+.opening-intro-line{
+  opacity:0;transform:translateY(9px);font-family:'Italianno',cursive;font-size:34px;
+  font-weight:400;letter-spacing:.025em;animation:openingLineIn .55s ease-out forwards
+}
+.opening-intro-line:nth-child(2){animation-delay:.55s}
+.opening-intro-line:nth-child(3){animation-delay:1.1s}
+.opening-intro-ampersand{font-size:25px;letter-spacing:.02em}
+@keyframes openingLineIn{to{opacity:.92;transform:translateY(0)}}
+@keyframes openingIntroOut{to{opacity:0;visibility:hidden}}
+.hero--photo-026 .hero-copy{z-index:2}
+.hero--photo-026 .hero-names{
+  margin:0;color:#fff;font-family:var(--serif);font-size:clamp(24px,6vw,30px);
+  font-weight:400;letter-spacing:.04em;text-shadow:0 2px 18px #000b
+}
+.hero--photo-026 .hero-names span{padding:0 4px;color:#fff}
+.hero--photo-026 .hero-date,.hero--photo-026 .hero-location{
+  margin:0;color:#fff;font-size:12px;font-weight:400;letter-spacing:.08em;
+  text-shadow:0 2px 14px #000c
+}
+.hero--photo-026 .hero-location{font-size:11px;color:#fffffff0}
+.hero--photo-026:after{
+  background:linear-gradient(180deg,#17151300 24%,#17151316 51%,#171513df 100%);
+  box-shadow:inset 0 0 90px #17151335
+}
+.quick-actions{opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease}
+.quick-actions.quick-actions-visible{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.section-pop{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.25,1)}
+.section-pop.section-pop-visible{opacity:1;transform:translateY(0)}
+.location-map{position:relative;width:100%;height:245px;overflow:hidden;background:#292622}
+.location-map-status{
+  position:absolute;inset:0;display:grid;place-items:center;margin:0;padding:20px;
+  color:#c8beb4;text-align:center;font-size:12px;line-height:1.8
+}
+.kakao-map-label{padding:5px 9px;color:#2b2723;font-size:11px;font-weight:700;white-space:nowrap}
+@media (max-width:380px){
+  .hero--photo-026 .hero-copy{padding-bottom:28px}
+  .opening-intro-line{font-size:30px}
+  .opening-intro-ampersand{font-size:22px}
+  .location-map{height:225px}
+}
+@media (prefers-reduced-motion:reduce){
+  .opening-intro{display:none}
+  .section-pop{opacity:1;transform:none;transition:none}
+  .quick-actions{opacity:1;transform:translateX(-50%);pointer-events:auto;transition:none}
+}
