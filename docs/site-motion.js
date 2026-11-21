@@ -1,8 +1,15 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const openingIntro = document.querySelector('.opening-intro');
+const returningFromGallery = new URLSearchParams(window.location.search).get('from') === 'gallery';
+
+if (returningFromGallery) {
+  const cleanUrl = new URL(window.location.href);
+  cleanUrl.searchParams.delete('from');
+  window.history.replaceState(null, '', cleanUrl);
+}
 
 if (openingIntro) {
-  if (!reduceMotion) {
+  if (!reduceMotion && !returningFromGallery) {
     const finishIntro = () => openingIntro.remove();
     openingIntro.addEventListener('animationend', event => {
       if (event.target === openingIntro && event.animationName === 'openingIntroOut') finishIntro();
