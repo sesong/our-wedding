@@ -2,15 +2,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 const openingIntro = document.querySelector('.opening-intro');
 
 if (openingIntro) {
-  let shouldPlayIntro = !reduceMotion;
-  try {
-    shouldPlayIntro = shouldPlayIntro && sessionStorage.getItem('wedding-intro-seen') !== '1';
-    if (shouldPlayIntro) sessionStorage.setItem('wedding-intro-seen', '1');
-  } catch {
-    // Keep the intro available if browser storage is disabled.
-  }
-
-  if (shouldPlayIntro) {
+  if (!reduceMotion) {
     const finishIntro = () => openingIntro.remove();
     openingIntro.addEventListener('animationend', event => {
       if (event.target === openingIntro && event.animationName === 'openingIntroOut') finishIntro();
