@@ -4,5 +4,5 @@ window.WEDDING_CONFIG = {
   supabaseUrl: 'https://sivnqjuamnmddndgjddx.supabase.co',
   supabasePublishableKey: 'sb_publishable_i1NYGv-fNDV8M_oS7dtCUw_xqRKcbJV',
   // 카카오 개발자 사이트의 JavaScript 키를 입력하세요.
-  kakaoMapJavascriptKey: ''
+  kakaoMapJavascriptKey: 'e8ee2a362d367114009fcf45eee2f0a1'
 };
