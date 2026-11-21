@@ -11,7 +11,7 @@
 
   const sdk = document.createElement('script');
   sdk.async = true;
-  sdk.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&libraries=services&autoload=false`;
+  sdk.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false`;
 
   const failTimer = window.setTimeout(() => {
     status.textContent = '카카오 지도를 불러오지 못했습니다. 아래 카카오맵 버튼을 이용해 주세요.';
@@ -31,23 +31,14 @@
 
     window.kakao.maps.load(() => {
       const kakao = window.kakao;
-      const fallbackPosition = new kakao.maps.LatLng(37.494383, 127.006115);
-      const map = new kakao.maps.Map(mapContainer, { center: fallbackPosition, level: 3 });
-      const marker = new kakao.maps.Marker({ map, position: fallbackPosition });
+      const venuePosition = new kakao.maps.LatLng(37.49367374002614, 127.00437393757042);
+      const map = new kakao.maps.Map(mapContainer, { center: venuePosition, level: 3 });
+      const marker = new kakao.maps.Marker({ map, position: venuePosition });
       map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
       const info = new kakao.maps.InfoWindow({
         content: '<div class="kakao-map-label">예그리나홀</div>'
       });
       info.open(map, marker);
-
-      const geocoder = new kakao.maps.services.Geocoder();
-      geocoder.addressSearch('서울특별시 서초구 반포대로 157', (results, resultStatus) => {
-        if (resultStatus === kakao.maps.services.Status.OK && results[0]) {
-          const position = new kakao.maps.LatLng(results[0].y, results[0].x);
-          map.setCenter(position);
-          marker.setPosition(position);
-        }
-      });
 
       window.clearTimeout(failTimer);
       status.remove();
